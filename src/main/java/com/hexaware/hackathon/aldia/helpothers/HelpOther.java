@@ -43,10 +43,10 @@ public class HelpOther {
 	@Column(name="ticket_status")
 	private String ticketStatus;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="curp", insertable=true, updatable=false)
 	private String curp;
-	
+	*/
 	@ManyToOne
 	@JoinColumn(name="id_social_worker", insertable=true, updatable=false)
 	private String idSocialWorker;
@@ -69,7 +69,7 @@ public class HelpOther {
 		this.streetRight = streetRight;
 		this.streetIndicator = streetIndicator;
 		this.ticketStatus = ticketStatus;
-		this.curp = curp;
+		//this.curp = curp;
 		this.idSocialWorker = idSocialWorker;
 	}
 
@@ -163,7 +163,7 @@ public class HelpOther {
 		this.ticketStatus = ticketStatus;
 	}
 
-
+/*
 	public String getCurp() {
 		return curp;
 	}
@@ -172,7 +172,7 @@ public class HelpOther {
 	public void setCurp(String curp) {
 		this.curp = curp;
 	}
-
+*/
 
 	public String getIdSocialWorker() {
 		return idSocialWorker;
@@ -189,7 +189,7 @@ public class HelpOther {
 		return "HelpOther [idHelpOther=" + idHelpOther + ", namePerson=" + namePerson + ", phone=" + phone
 				+ ", address=" + address + ", dateHelpOther=" + dateHelpOther + ", streetLeft=" + streetLeft
 				+ ", streetRight=" + streetRight + ", streetIndicator=" + streetIndicator + ", ticketStatus="
-				+ ticketStatus + ", curp=" + curp + ", idSocialWorker=" + idSocialWorker + "]";
+				+ ticketStatus;// + ", curp=" + curp + ", idSocialWorker=" + idSocialWorker + "]";
 	}
 	
 }
