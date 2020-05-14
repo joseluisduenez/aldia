@@ -88,6 +88,7 @@ public class PersonController {
 		Person person = personRepository.findByCurp(curp);
         Map<String, Object> map = new HashMap<>(); 
         map.put("status", person.getProgramStatus());
+        map.put("amount", person.getAmountApproved());
 		return ResponseEntity.ok(map);
 	}
 	
