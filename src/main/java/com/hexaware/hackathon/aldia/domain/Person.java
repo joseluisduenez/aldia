@@ -4,11 +4,13 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import com.hexaware.hackathon.aldia.domain.UserInfo;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -66,6 +68,9 @@ public class Person {
 	
 	@ManyToOne(optional = true, fetch = FetchType.EAGER)
     private UserInfo user;
+	
+	@Column(name="amount_approved")
+	private double amountApproved;
 	
 	public String getCurp() {
 		return curp;
@@ -167,6 +172,12 @@ public class Person {
 	public String getBank() {
 		return bank;
 	}
+	public double getAmountApproved() {
+		return amountApproved;
+	}
+	public void setAmountApproved(double amountApproved) {
+		this.amountApproved = amountApproved;
+	}
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
@@ -184,6 +195,7 @@ public class Person {
 	public void setUser(UserInfo user) {
 		this.user = user;
 	}
+	
 	public Person() {}
 	
 }

@@ -20,6 +20,8 @@ import com.hexaware.hackathon.aldia.domain.UserInfo;
 import com.hexaware.hackathon.aldia.exception.ValidationException;
 import com.hexaware.hackathon.aldia.repository.PersonRepository;
 import com.hexaware.hackathon.aldia.repository.UserInfoRepository;
+import com.hexaware.hackathon.aldia.service.impl.PersonServiceImpl;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
@@ -31,6 +33,9 @@ public class PersonController {
 	
 	@Autowired
     private UserInfoRepository userInfoRepository;
+	
+	@Autowired
+	private PersonServiceImpl personServiceImpl;
 	
 	@PostMapping("/person")
 	public Boolean create(@RequestBody Map<String, String> body) {
@@ -47,6 +52,7 @@ public class PersonController {
 		Person person = mapper.convertValue(body, Person.class);
 		UserInfo user = userInfoRepository.findById(Integer.valueOf(body.get("userId"))).get();
 		person.setUser(user);
+		personServiceImpl.setStatus(person);
 		personRepository.save(person);
 	}
 	
