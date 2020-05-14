@@ -52,12 +52,13 @@ public class AuthController {
 
     }
     
-    private Map<String, String> generateResponse(UserDetails userDetails, String username) {
+    private Map<String, Object> generateResponse(UserDetails userDetails, String username) {
         final String token = jwtToken.generateToken(userDetails);
         UserInfo user = userInfoRepository.findByUsername(username);
-        Map<String, String> map = new HashMap<>(); 
+        Map<String, Object> map = new HashMap<>(); 
         map.put("token", token);
         map.put("role", user.getRole());
+        map.put("userId", user.getId());
         return map;
     }
     
