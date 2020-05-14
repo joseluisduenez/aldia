@@ -1,6 +1,7 @@
 package com.hexaware.hackathon.aldia.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,14 @@ public class PersonController {
 	public Boolean delete(@RequestParam(name = "id") int id) {
 		personRepository.delete(personRepository.findById(id).get());
 		return true;
+	}
+	
+	@GetMapping("/program/status")
+	public ResponseEntity<Map<String,Object>> status(@RequestParam(name = "curp") String curp) {
+		Person person = personRepository.findByCurp(curp);
+        Map<String, Object> map = new HashMap<>(); 
+        map.put("status", person.getProgramStatus());
+		return ResponseEntity.ok(map);
 	}
 	
 }
