@@ -1,6 +1,5 @@
 package com.hexaware.hackathon.aldia.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.hexaware.hackathon.aldia.domain.Person;
 import com.hexaware.hackathon.aldia.domain.UserInfo;
 import com.hexaware.hackathon.aldia.exception.ValidationException;
 import com.hexaware.hackathon.aldia.repository.PersonRepository;
 import com.hexaware.hackathon.aldia.repository.UserInfoRepository;
 import com.hexaware.hackathon.aldia.service.impl.PersonServiceImpl;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
@@ -55,6 +52,7 @@ public class PersonController {
 		personServiceImpl.setStatus(person);
 		personRepository.save(person);
 	}
+	
 	
 	@GetMapping("/person")
 	public ResponseEntity<List<Person>> read() {

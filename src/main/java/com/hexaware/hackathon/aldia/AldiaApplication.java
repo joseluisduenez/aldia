@@ -69,17 +69,15 @@ public class AldiaApplication {
 	    @Override
 	    protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-	        httpSecurity.csrf().disable()
-
-	                .authorizeRequests().antMatchers("/authenticate","/user").permitAll().
-
-	        anyRequest().authenticated().and().
-
-	        exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-
-	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-	        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	    	httpSecurity
+	        .csrf().disable()
+	        .cors().disable()
+	        .authorizeRequests()
+	        .antMatchers("/authenticate","/program/status" ,"/user" ).permitAll()
+	        .anyRequest().authenticated()
+	        .and()
+	        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+	        .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
 
 	    }
 

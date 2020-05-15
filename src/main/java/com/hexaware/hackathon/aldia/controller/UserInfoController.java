@@ -1,16 +1,22 @@
 package com.hexaware.hackathon.aldia.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.hexaware.hackathon.aldia.domain.Person;
 import com.hexaware.hackathon.aldia.domain.UserInfo;
 import com.hexaware.hackathon.aldia.exception.ValidationException;
+import com.hexaware.hackathon.aldia.repository.PersonRepository;
 import com.hexaware.hackathon.aldia.repository.UserInfoRepository;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +32,8 @@ public class UserInfoController {
         this.userInfoRepository = userInfoRepository;
     }
 
+	@Autowired
+	PersonRepository personRepository;
 
     @PostMapping("/user")
     public Boolean create(@RequestBody Map<String, String> body) throws NoSuchAlgorithmException {
@@ -47,6 +55,7 @@ public class UserInfoController {
 	public ResponseEntity<List<UserInfo>> read() {
 		return ResponseEntity.ok(userInfoRepository.findAll());
 	}
+
 
 }
 
